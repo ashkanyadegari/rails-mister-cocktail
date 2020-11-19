@@ -1,8 +1,9 @@
 <h1>Cocktails#index</h1>
 <p>Find me in app/views/cocktails/index.html.erb</p>
 
+<div class="row">
 <% @cocktails.each do |cocktail| %>
-<div>
+<div class="col-lg-4">
 <img src="<%= cocktail.image %>" alt="cocktail-img">
 <%= link_to cocktail_path(cocktail) do  %>
 <h2><%= cocktail.name %></h2>
@@ -13,3 +14,4 @@
 <%= link_to 'Delete Cocktail', cocktail, method: :delete, data: {confirm: 'U sure bro?' }  %>
 </div>
 <% end %>
+</div>
