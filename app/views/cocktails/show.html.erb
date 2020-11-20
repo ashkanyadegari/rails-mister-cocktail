@@ -29,10 +29,25 @@
     <div class="col-8">
       <div class="cocktail-reviews">
         <h3>Cocktail Reviews: </h3>
+        <% @cocktail.reviews.each do |review| %>
+        <div class="bg-white rounded mb-1 p-1">
+         <%= cl_image_tag(review.photo.key,
+      width: 100, height: 100, crop: :thumb, class: "rounded") %>
+      <p> <%= review.content %></p>
+      <p><%= review.rating %> </p>
+
       </div>
-      <div class="cocktail-review-form">
-        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Adipisci, minima.</p>
+        <% end %>
       </div>
+
+      <h2>Add your review!!</h2>
+      <%= simple_form_for [@cocktail, @review] do |f| %>
+        <%= f.input :content %>
+        <%= f.input :photo, as: :file %>
+        <%= f.input :rating %>
+        <%= f.submit 'text' %>
+      <% end %>
+
     </div>
   </div>
 
