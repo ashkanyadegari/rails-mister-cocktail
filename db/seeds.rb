@@ -33,7 +33,7 @@ if Rails.env.development?
     direct_website = open(url).read
     nokogiri_object = Nokogiri::HTML(direct_website)
 
-    cocktail_card = nokogiri_object.search(".recipe_admin_element")[55..60]
+    cocktail_card = nokogiri_object.search(".recipe_admin_element")[0]
 
     cocktail_card.each do |card|
       image = card.search(".element-image").attr("src").value.gsub("100x100","600x400")
