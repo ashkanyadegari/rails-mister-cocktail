@@ -9,6 +9,7 @@ class CocktailsController < ApplicationController
     else
       @cocktails = Cocktail.all
     end
+    @random_cocktail = rand(0..@cocktails.length)
   end
 
   def new
@@ -49,6 +50,6 @@ class CocktailsController < ApplicationController
   end
 
   def cocktail_params
-    params.require(:cocktail).permit(:name, :description, :image, :difficulty)
+    params.require(:cocktail).permit(:name, :description, :image, :difficulty, :photo)
   end
 end

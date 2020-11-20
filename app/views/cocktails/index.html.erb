@@ -1,17 +1,43 @@
-<h1>Cocktails#index</h1>
-<p>Find me in app/views/cocktails/index.html.erb</p>
+<div class="banner" style="background-image: url('<%= cl_image_path(@cocktails[@random_cocktail].photo.key) %>');object-fit: fill; background-size: cover;">
 
-<div class="row">
-<% @cocktails.each do |cocktail| %>
-<div class="col-lg-4">
-<img src="<%= cocktail.image %>" alt="cocktail-img">
-<%= link_to cocktail_path(cocktail) do  %>
-<h2><%= cocktail.name %></h2>
-<% end %>
-<p><%= cocktail.description %></p>
-<p><%= cocktail.difficulty %></p>
-<%= link_to 'Edit Cocktail', edit_cocktail_path(cocktail.id)  %>
-<%= link_to 'Delete Cocktail', cocktail, method: :delete, data: {confirm: 'U sure bro?' }  %>
+<div class="hero-content">
+  <h1><%= @cocktails[@random_cocktail].name %></h1>
+  <p class="lead"><%= @cocktails[@random_cocktail].description %></p>
+  <p><%= link_to "Try It", cocktail_path(@cocktails[@random_cocktail].id) %></p>
 </div>
-<% end %>
+
+</div>
+<div class="container">
+
+<div class="row cols-12 cols-md-offset-6">
+  <% @cocktails.each do |cocktail| %>
+    <div class="cocktail-card">
+      <div class="card-top">
+        <%= cl_image_tag(cocktail.photo.key) %>
+
+        <div class="management">
+          <%= link_to edit_cocktail_path(cocktail.id) do  %>
+            <i class="fas fa-edit"></i>
+          <% end %>
+        </div>
+      </div>
+      <div class="cocktail-card-info">
+        <div class="card-description">
+          <%= link_to cocktail_path(cocktail) do  %>
+          <h2><%= cocktail.name %></h2>
+          <% end %>
+          <p><%= cocktail.description %></p>
+        </div>
+        <div class="card-details">
+          <div class="card-rating">
+            rating
+          </div>
+          <div class="card-tags">
+          <%= cocktail.difficulty %>
+          </div>
+        </div>
+      </div>
+    </div>
+  <% end %>
+</div>
 </div>

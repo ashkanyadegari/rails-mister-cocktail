@@ -1,6 +1,6 @@
 <div class="navbar navbar-expand-sm navbar-light navbar-lewagon">
-  <%= link_to "#", class: "navbar-brand" do %>
-    <%= image_tag "https://raw.githubusercontent.com/lewagon/fullstack-images/master/uikit/logo.png" %>
+  <%= link_to cocktails_path, class: "navbar-brand" do %>
+    <h2>MISTER COCKTAIL</h2>
     <% end %>
 
   <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
@@ -17,7 +17,7 @@
         <%= link_to "Add Cocktail", new_cocktail_path, class: "nav-link" %>
       </li>
       <li class="nav-item dropdown">
-          <form class="form-inline my-2 my-lg-0" action="/cocktails">
+          <form class="form-inline" action="/cocktails">
             <input class="form-control mr-sm-2" name="query" type="search" placeholder="Search" value="<%= params[:query] %>">
             <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
           </form>

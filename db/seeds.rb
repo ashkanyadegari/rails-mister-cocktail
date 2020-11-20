@@ -24,25 +24,25 @@ if Rails.env.development?
     ingredient.save
     p "#{ingredient.name} has been created"
   end
+
   puts "Destroying all cocktail  seeds"
   puts "Starting cocktail seed"
   Cocktail.destroy_all
 
-    file = open("https://www.allrecipes.com/search/?wt=cocktail").read
-    nokogiri_object = Nokogiri::HTML(file)
-    cards = nokogiri_object.search('.fixed-recipe-card')[0..40]
-    cards.each do |card|
-      title = card.search("span.fixed-recipe-card__title-link").text
-      description = card.search(".fixed-recipe-card__description").text
-      image = card.search(".fixed-recipe-card__img").attr('data-original-src').value
-      ratings = card.at_css("span.stars")['data-ratingstars'].to_f.round(1)
-      url = open(card.at_css("a")['href']).read
-      nokogiri_object_two = Nokogiri::HTML(url)
-      time = nokogiri_object_two.search("div.recipe-meta-item-body")
-      final_time = time.first.text.strip
+    url = 'https://tuxedono2.com/recipes/'
+    direct_website = open(url).read
+    nokogiri_object = Nokogiri::HTML(direct_website)
 
-      allecipe = [title, description, ratings, final_time, image]
+    cocktail_card = nokogiri_object.search(".recipe_admin_element")[55..60]
+
+    cocktail_card.each do |card|
+      image = card.search(".element-image").attr("src").value.gsub("100x100","600x400")
+      file = URI.open(image)
+      title = card.search(".index-element-name").text
+      description = card.search(".subtext").text.strip.gsub("\n",", ")
+
       cocktail = Cocktail.new(name: title, description: description, difficulty: %w(easy medium hard).sample, image: image)
+      cocktail.photo.attach(io: file, filename: "#{cocktail.name}.jpg", content_type: 'image/png')
       cocktail.save
       puts "#{cocktail.name} was added to the db"
     end

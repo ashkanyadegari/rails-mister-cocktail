@@ -1,0 +1,35 @@
+.cocktail-card {
+  border-radius: 8px;
+  max-width: 450px;
+  box-shadow: 2px 2px 3px rgba(230,230,230,0.3);
+  background-color: #ffff;
+  padding: 8px;
+  margin: 3px;
+}
+
+.cocktail-card img {
+  border-radius: 8px;
+  width: 100%;
+}
+
+.cocktail-card-info {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 5px;
+}
+
+.cocktail-card-info h2 {
+  font-size: 25px;
+  font-weight: bold;
+}
+
+.card-top {
+  position: relative;
+}
+
+.management {
+  position: absolute;
+  right: 20px;
+  top: 20px;
+}
+
