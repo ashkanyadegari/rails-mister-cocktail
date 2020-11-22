@@ -16,3 +16,20 @@ require("channels")
 // const images = require.context('../images', true)
 // const imagePath = (name) => images(name, true)
 import 'bootstrap';
+import { Sortable, MultiDrag, Swap, OnSpill, AutoScroll } from "sortablejs";
+
+// Sortable JS for SHOW page
+
+const list = document.querySelector('#showdoses');
+Sortable.create(list);
+
+console.log("hello")
+
+
+// Sortable.create(list, {
+//   ghostClass: "ghost",
+//   animation: 150,
+//   onEnd: (event) => {
+//     alert(`${event.oldIndex} moved to ${event.newIndex}`);
+//   }
+// });

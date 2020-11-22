@@ -33,3 +33,30 @@
   top: 20px;
 }
 
+
+.review-card {
+  position: relative;
+  box-shadow: 2px 2px 3px rgba(150,150,150,0.2);
+}
+
+.review-rating {
+  position: absolute;
+  top: 15px;
+  right: 15px;
+}
+
+.review-date {
+  position: absolute;
+  bottom: 0px;
+  right: 10px;
+}
+
+.review-content {
+  margin: 10px 20px;
+  max-width: 50%;
+
+  p {
+    font-size: 1rem;
+    font-weight: lighter;
+  }
+}

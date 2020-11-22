@@ -3,11 +3,11 @@
 <div class="hero-content">
   <h1><%= @cocktails[@random_cocktail].name %></h1>
   <p class="lead"><%= @cocktails[@random_cocktail].description %></p>
-  <p><%= link_to "Try It", cocktail_path(@cocktails[@random_cocktail].id), class: "btn btn-danger" %></p>
+  <p><%= link_to "Try It", cocktail_path(@cocktails[@random_cocktail].id), class: "btn btn-pink" %></p>
 </div>
 
 </div>
-<div class="container">
+<div class="container d-flex">
 
 <div class="row cols-12 cols-md-offset-6">
   <% @cocktails.each do |cocktail| %>

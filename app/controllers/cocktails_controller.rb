@@ -9,7 +9,7 @@ class CocktailsController < ApplicationController
     else
       @cocktails = Cocktail.all
     end
-    @random_cocktail = rand(0..@cocktails.length)
+    @random_cocktail = rand(0..@cocktails.length - 1)
   end
 
   def new

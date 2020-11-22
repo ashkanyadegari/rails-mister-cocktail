@@ -10,9 +10,9 @@
 <div class="container">
 
 <div class="row">
-  <div class="col-4">
+  <div class="col-12 col-md-4">
     <h3>Ingredients: </h3>
-    <ol>
+    <ol id="showdoses">
       <% @cocktail.doses.each do |dose| %>
         <li><%= dose.description %> | <%= Ingredient.find(dose.ingredient_id).name %> | <%= link_to 'Delete', dose_path(dose), method: :delete, data: {confirm: 'U sure Ara?' }  %>
         </li>
@@ -23,20 +23,28 @@
     <%= simple_form_for [@cocktail, @dose] do |f| %>
       <%= f.input :description %>
       <%= f.association :ingredient, collection: Ingredient.order('name ASC') %>
-      <%= f.button :submit %>
+      <%= f.submit 'Add Ingredient', :class => "btn btn-pink" %>
     <% end %>
     </div>
-    <div class="col-8">
-      <div class="cocktail-reviews">
+    <div class="col-12 col-md-8">
+      <div class="cocktail-reviews mb-3">
         <h3>Cocktail Reviews: </h3>
         <% @cocktail.reviews.each do |review| %>
-        <div class="bg-white rounded mb-1 p-1">
-         <%= cl_image_tag(review.photo.key,
-      width: 100, height: 100, crop: :thumb, class: "rounded") %>
-      <p> <%= review.content %></p>
-      <p><%= review.rating %> </p>
-
-      </div>
+        <div class="review-card bg-white rounded mb-1 p-2 d-flex">
+        <div class="review-image">
+          <%= cl_image_tag(review.photo.key,
+          width: 100, height: 100, crop: :thumb, class: "rounded") %>
+        </div>
+        <div class="review-content">
+          <p class="lead"> <%= review.content %></p>
+        </div>
+        <div class="review-rating">
+          <p> <%= '⭐️' * review.rating.to_i %>  </p>
+        </div>
+        <div class="review-date">
+          <p><%= review.created_at.strftime("%F") %></p>
+        </div>
+        </div>
         <% end %>
       </div>
 
@@ -44,13 +52,11 @@
       <%= simple_form_for [@cocktail, @review] do |f| %>
         <%= f.input :content %>
         <%= f.input :photo, as: :file %>
-        <%= f.input :rating %>
-        <%= f.submit 'text' %>
+        <%= f.input :rating, placeholder: 'Enter a number between 1 - 5' %>
+
+        <%= f.submit 'Add Review', :class => "btn btn-pink" %>
       <% end %>
 
     </div>
   </div>
-
-  <%= link_to 'Back to list',  cocktails_path %>
-  <%= link_to 'Create dose',  new_cocktail_dose_path(@cocktail)%>
   </div>
